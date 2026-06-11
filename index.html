@@ -1,0 +1,1384 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบประเมิน 180 องศา - Smart Communication</title>
+    <!-- Google Fonts: Inter & Sarabun for professional Thai-English display -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS Design System - Bright, Premium, Colorful but Polite (สีสดใส แต่สุภาพ) */
+        :root {
+            --primary: #0077b6;
+            --primary-light: #e0f2fe;
+            --primary-dark: #005f9e;
+            --accent: #00b4d8;
+            --accent-light: #e0f7fa;
+            --success: #0d9488;
+            --success-light: #ccfbf1;
+            --warning: #f59e0b;
+            --warning-light: #fef3c7;
+            --danger: #e11d48;
+            --danger-light: #ffe4e6;
+            --neutral-dark: #1e293b;
+            --neutral-light: #f8fafc;
+            --neutral-grey: #64748b;
+            --border-color: #cbd5e1;
+            --body-bg: linear-gradient(135deg, #f0f5fa 0%, #e2ebf5 100%);
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
+            --font-primary: 'Sarabun', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background: var(--body-bg);
+            background-attachment: fixed;
+            color: var(--neutral-dark);
+            min-height: 100vh;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Screens control */
+        .screen:not(.active) {
+            display: none !important;
+        }
+
+        .screen {
+            opacity: 0;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            transform: translateY(15px);
+        }
+
+        .screen.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 20px;
+            font-size: 15px;
+            font-weight: 600;
+            border-radius: 8px;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: var(--font-primary);
+            outline: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            box-shadow: 0 4px 12px rgba(0, 119, 182, 0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 119, 182, 0.3);
+            filter: brightness(1.1);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-light);
+        }
+
+        .btn-icon {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid var(--border-color);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .btn-icon:hover {
+            background: var(--neutral-light);
+            transform: scale(1.05);
+        }
+
+        .btn-block {
+            display: flex;
+            width: 100%;
+        }
+
+        .btn-sm {
+            padding: 6px 12px;
+            font-size: 13px;
+        }
+
+        /* Badges */
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 50px;
+            text-transform: uppercase;
+        }
+
+        .badge-info {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+        }
+
+        .badge-success {
+            background: var(--success-light);
+            color: var(--success);
+        }
+
+        .badge-warning {
+            background: var(--warning-light);
+            color: var(--warning);
+        }
+
+        /* Loader Screen */
+        #loader-screen {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .loader-content {
+            text-align: center;
+            background: var(--card-bg);
+            padding: 30px 50px;
+            border-radius: 16px;
+            box-shadow: var(--glass-shadow);
+            backdrop-filter: blur(10px);
+        }
+
+        .spinner {
+            width: 45px;
+            height: 45px;
+            border: 4px solid var(--primary-light);
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Login Screen */
+        #login-screen {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .login-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 20px;
+            padding: 45px;
+            width: 100%;
+            max-width: 480px;
+            box-shadow: var(--glass-shadow);
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .brand-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .brand-logo {
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+
+        .brand-header h1 {
+            font-size: 26px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 5px;
+        }
+
+        .brand-header h2 {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--neutral-grey);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--neutral-dark);
+        }
+
+        .select-search-container {
+            position: relative;
+            width: 100%;
+        }
+
+        input[type="email"] {
+            width: 100%;
+            padding: 12px 16px;
+            font-size: 15px;
+            border: 1.5px solid var(--border-color);
+            border-radius: 8px;
+            outline: none;
+            transition: all 0.2s ease;
+            font-family: var(--font-primary);
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        input[type="email"]:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 119, 182, 0.15);
+        }
+
+        .dropdown-list {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            max-height: 200px;
+            overflow-y: auto;
+            z-index: 1000;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            display: none;
+        }
+
+        .dropdown-list.active {
+            display: block;
+        }
+
+        .dropdown-item {
+            padding: 10px 16px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.15s ease;
+        }
+
+        .dropdown-item:hover {
+            background: var(--neutral-light);
+            color: var(--primary-dark);
+            font-weight: 500;
+        }
+
+        .dropdown-item .dropdown-email {
+            font-size: 12px;
+            color: var(--neutral-grey);
+            display: block;
+        }
+
+        .login-footer {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 12px;
+            color: var(--neutral-grey);
+        }
+
+        /* Header styling */
+        .app-header {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+            padding: 12px 0;
+            position: sticky;
+            top: 0;
+            z-index: 900;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+        }
+
+        .header-container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .user-avatar {
+            font-size: 24px;
+            background: var(--primary-light);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .user-info h3 {
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .sub-text {
+            font-size: 12px;
+            color: var(--neutral-grey);
+        }
+
+        /* Dashboard Screen */
+        .app-content {
+            padding-top: 30px;
+            padding-bottom: 60px;
+        }
+
+        .dashboard-banner {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(224, 242, 254, 0.8) 100%);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 16px;
+            padding: 24px 32px;
+            margin-bottom: 30px;
+            box-shadow: var(--glass-shadow);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .banner-text h2 {
+            font-size: 22px;
+            color: var(--neutral-dark);
+            margin-bottom: 4px;
+        }
+
+        .banner-text p {
+            font-size: 14px;
+            color: var(--neutral-grey);
+        }
+
+        .progress-summary {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: white;
+            padding: 12px 24px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+        }
+
+        .progress-circle-container {
+            position: relative;
+            width: 80px;
+            height: 80px;
+        }
+
+        .progress-ring {
+            transform: rotate(-90deg);
+        }
+
+        .progress-ring-circle {
+            transition: stroke-dashoffset 0.35s;
+            transform-origin: 50% 50%;
+        }
+
+        .progress-circle-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .progress-stats {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stats-label {
+            font-size: 12px;
+            color: var(--neutral-grey);
+        }
+
+        .stats-value {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--neutral-dark);
+        }
+
+        /* Task grid */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .section-header h3 {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .task-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .task-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: var(--glass-shadow);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 160px;
+            transition: all 0.2s ease;
+        }
+
+        .task-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px rgba(31, 38, 135, 0.08);
+            border-color: rgba(0, 119, 182, 0.25);
+        }
+
+        .task-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .task-badge-role {
+            font-size: 11px;
+            font-weight: 600;
+            padding: 3px 8px;
+            border-radius: 4px;
+            background: var(--primary-light);
+            color: var(--primary-dark);
+        }
+
+        .task-badge-role.self {
+            background: var(--success-light);
+            color: var(--success);
+        }
+
+        .task-badge-status {
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .status-completed {
+            color: var(--success);
+        }
+
+        .status-pending {
+            color: var(--warning);
+        }
+
+        .task-card-body h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .task-card-footer {
+            margin-top: 15px;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        /* Assessment header */
+        .header-navigation {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .assessment-title-info h3 {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .assessment-progress-top {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 4px;
+        }
+
+        .assessment-progress-top span {
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .progress-bar-container {
+            width: 120px;
+            height: 6px;
+            background: #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: var(--accent);
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 16px 24px;
+            margin-bottom: 25px;
+            border-left: 4px solid var(--primary);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        }
+
+        .scale-info-card h4 {
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: var(--primary-dark);
+        }
+
+        .scale-legend-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 10px;
+        }
+
+        .legend-item {
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+        }
+
+        .legend-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            font-size: 11px;
+            font-weight: 700;
+            color: white;
+        }
+
+        /* Ratings colors */
+        .score-5 { background: #0ea5e9; }
+        .score-4 { background: #06b6d4; }
+        .score-3 { background: #14b8a6; }
+        .score-2 { background: #f59e0b; }
+        .score-1 { background: #ef4444; }
+        .score-na { background: #64748b; }
+
+        .category-block {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 25px;
+            box-shadow: var(--glass-shadow);
+        }
+
+        .category-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary-dark);
+            border-bottom: 2px solid var(--primary-light);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .question-item {
+            padding: 16px 0;
+            border-bottom: 1px dashed #e2e8f0;
+        }
+
+        .question-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .question-text {
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .question-number {
+            font-weight: 700;
+            color: var(--primary);
+            margin-right: 8px;
+        }
+
+        .rating-options {
+            display: flex;
+            justify-content: space-between;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .rating-label {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+            user-select: none;
+        }
+
+        .rating-label input[type="radio"] {
+            display: none;
+        }
+
+        .rating-chip {
+            width: 100%;
+            height: 40px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.2s ease;
+            color: var(--neutral-grey);
+        }
+
+        .rating-label:hover .rating-chip {
+            transform: translateY(-2px);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .rating-label input[type="radio"]:checked + .rating-chip {
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .rating-label input[type="radio"]:checked + .rating-chip.c5 { background: #0ea5e9; border-color: #0ea5e9; }
+        .rating-label input[type="radio"]:checked + .rating-chip.c4 { background: #06b6d4; border-color: #06b6d4; }
+        .rating-label input[type="radio"]:checked + .rating-chip.c3 { background: #14b8a6; border-color: #14b8a6; }
+        .rating-label input[type="radio"]:checked + .rating-chip.c2 { background: #f59e0b; border-color: #f59e0b; }
+        .rating-label input[type="radio"]:checked + .rating-chip.c1 { background: #ef4444; border-color: #ef4444; }
+        .rating-label input[type="radio"]:checked + .rating-chip.cna { background: #64748b; border-color: #64748b; }
+
+        .rating-text {
+            font-size: 10px;
+            color: var(--neutral-grey);
+            margin-top: 4px;
+            text-align: center;
+            display: block;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            margin-top: 35px;
+        }
+
+        /* Success Overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .success-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transform: scale(0.85);
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .overlay.active .success-card {
+            transform: scale(1);
+        }
+
+        .success-icon {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            background: var(--success-light);
+            color: var(--success);
+            font-size: 32px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            border: 2px solid var(--success);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .success-card h2 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: var(--neutral-dark);
+        }
+
+        .success-card p {
+            font-size: 14px;
+            color: var(--neutral-grey);
+            margin-bottom: 25px;
+        }
+
+        @media(max-width: 768px) {
+            .dashboard-banner { padding: 20px; flex-direction: column; align-items: flex-start; }
+            .progress-summary { width: 100%; justify-content: space-between; }
+            .rating-options { flex-wrap: wrap; }
+            .rating-label { flex: unset; width: calc(33.33% - 6px); }
+            .rating-text { display: none; }
+            .form-actions { flex-direction: column-reverse; }
+            .form-actions button { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- Loader Screen -->
+        <div id="loader-screen" class="screen active">
+            <div class="loader-content">
+                <div class="spinner"></div>
+                <p>กำลังโหลดข้อมูลระบบ...</p>
+            </div>
+        </div>
+
+        <!-- Login Screen -->
+        <div id="login-screen" class="screen">
+            <div class="login-card">
+                <div class="brand-header">
+                    <div class="brand-logo">💬</div>
+                    <h1>Smart Communication</h1>
+                    <h2>ระบบประเมินพฤติกรรมการสื่อสารแบบ 180 องศา</h2>
+                </div>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="user-email-input">กรุณากรอกหรือเลือกอีเมลผู้ใช้งาน</label>
+                        <div class="select-search-container">
+                            <input type="email" id="user-email-input" placeholder="example@email.com" required autocomplete="off">
+                            <div id="email-dropdown" class="dropdown-list"></div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">เข้าสู่ระบบ</button>
+                </form>
+                <div class="login-footer">
+                    <p>กรุณาใช้อีเมลที่อยู่ในรายชื่อผู้ประเมินในการเข้าสู่ระบบ</p>
+                    <div style="margin-top: 15px; padding-top: 15px; border-top: 1px dashed var(--border-color);">
+                        <a href="https://script.google.com/macros/s/AKfycbEQ7a_sVQUK3fj8maFRQcKDVJHcHu_bphTdXsS0XWr4juzGRMINCHor1LU0oMR3bU/exec" target="_blank" style="color: var(--primary); font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
+                            🔗 เข้าใช้งานระบบประเมินออนไลน์ (Google Web App)
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Screen -->
+        <div id="dashboard-screen" class="screen">
+            <header class="app-header">
+                <div class="header-container">
+                    <div class="user-profile">
+                        <span class="user-avatar">👤</span>
+                        <div class="user-info">
+                            <h3 id="current-user-name">ชื่อผู้ใช้งาน</h3>
+                            <span id="current-user-email" class="sub-text">email@domain.com</span>
+                        </div>
+                    </div>
+                    <button id="logout-btn" class="btn btn-outline btn-sm">ออกจากระบบ</button>
+                </div>
+            </header>
+
+            <main class="app-content container">
+                <div class="dashboard-banner">
+                    <div class="banner-text">
+                        <h2>รายการประเมินของคุณ</h2>
+                        <p>กรุณาทำแบบประเมินให้ครบถ้วนเพื่อผลลัพธ์ที่ถูกต้องและสมบูรณ์</p>
+                    </div>
+                    <div class="progress-summary">
+                        <div class="progress-circle-container">
+                            <svg class="progress-ring" width="80" height="80">
+                                <circle class="progress-ring-circle-bg" stroke="#e0e0e0" stroke-width="6" fill="transparent" r="34" cx="40" cy="40"/>
+                                <circle id="progress-circle-bar" class="progress-ring-circle" stroke="#00b4d8" stroke-width="6" fill="transparent" r="34" cx="40" cy="40"/>
+                            </svg>
+                            <div id="progress-text-percent" class="progress-circle-text">0%</div>
+                        </div>
+                        <div class="progress-stats">
+                            <span class="stats-label">ทำแล้วเสร็จ</span>
+                            <span id="progress-count" class="stats-value">0 / 0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="task-section">
+                    <div class="section-header">
+                        <h3>งานประเมินที่ได้รับมอบหมาย</h3>
+                        <span id="pending-badge" class="badge badge-warning">รอดำเนินการ 0 งาน</span>
+                    </div>
+                    <div id="task-grid" class="task-grid"></div>
+                </div>
+            </main>
+        </div>
+
+        <!-- Assessment Screen -->
+        <div id="assessment-screen" class="screen">
+            <header class="app-header">
+                <div class="header-container">
+                    <div class="header-navigation">
+                        <button id="back-to-dashboard-btn" class="btn btn-icon">←</button>
+                        <div class="assessment-title-info">
+                            <span class="badge badge-info" id="assessment-role-badge">Manager</span>
+                            <h3 id="assessment-target-name">ชื่อผู้ถูกประเมิน</h3>
+                        </div>
+                    </div>
+                    <div class="assessment-progress-top">
+                        <span id="answers-progress-text">ตอบแล้ว 0 / 19 ข้อ</span>
+                        <div class="progress-bar-container">
+                            <div id="answers-progress-bar" class="progress-bar-fill"></div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <main class="app-content container">
+                <form id="assessment-form">
+                    <div class="info-card scale-info-card">
+                        <h4>เกณฑ์การให้คะแนน</h4>
+                        <div class="scale-legend-grid">
+                            <div class="legend-item"><span class="legend-num score-5">5</span> ทำเป็นประจำ</div>
+                            <div class="legend-item"><span class="legend-num score-4">4</span> ทำบ่อยครั้ง</div>
+                            <div class="legend-item"><span class="legend-num score-3">3</span> ทำบางครั้ง</div>
+                            <div class="legend-item"><span class="legend-num score-2">2</span> ทำน้อยครั้ง</div>
+                            <div class="legend-item"><span class="legend-num score-1">1</span> ไม่เคยทำเลย</div>
+                            <div class="legend-item"><span class="legend-num score-na">N/A</span> ระบุไม่ได้</div>
+                        </div>
+                    </div>
+
+                    <div id="questions-container"></div>
+
+                    <div class="form-actions">
+                        <button type="button" id="cancel-assessment-btn" class="btn btn-outline">ยกเลิก</button>
+                        <button type="submit" class="btn btn-primary" id="submit-assessment-btn">ส่งผลประเมิน</button>
+                    </div>
+                </form>
+            </main>
+        </div>
+
+        <!-- Success Overlay -->
+        <div id="success-overlay" class="overlay">
+            <div class="success-card">
+                <div class="success-icon">✓</div>
+                <h2>ส่งผลประเมินสำเร็จ!</h2>
+                <p>บันทึกผลการประเมินของคุณลงในระบบเรียบร้อยแล้ว</p>
+                <button id="success-close-btn" class="btn btn-primary">กลับสู่หน้าหลัก</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // App State
+        let namelistData = null;
+        let questionsData = null;
+        let responsesData = [];
+        let currentUser = null;
+        let currentTask = null;
+
+        // Check if we are running in Google Apps Script (GAS) or Local server
+        // Using Apps Script HTML template script injection with a safe JSON.parse fallback
+        try {
+            namelistData = JSON.parse('<?!= initialNamelist ?>');
+            questionsData = JSON.parse('<?!= initialQuestions ?>');
+            responsesData = JSON.parse('<?!= initialResponses ?>');
+            window.isGoogleAppsScript = true;
+            console.log("GAS Server-Side Rendering (SSR) data loaded successfully!");
+        } catch (e) {
+            window.isGoogleAppsScript = false;
+            console.log("Local offline execution detected. Will fetch data via HTTP APIs.");
+        }
+
+        // DOM Elements
+        const loaderScreen = document.getElementById('loader-screen');
+        const loginScreen = document.getElementById('login-screen');
+        const dashboardScreen = document.getElementById('dashboard-screen');
+        const assessmentScreen = document.getElementById('assessment-screen');
+        const successOverlay = document.getElementById('success-overlay');
+
+        const loginForm = document.getElementById('login-form');
+        const userEmailInput = document.getElementById('user-email-input');
+        const emailDropdown = document.getElementById('email-dropdown');
+
+        const currentUserName = document.getElementById('current-user-name');
+        const currentUserEmail = document.getElementById('current-user-email');
+        const logoutBtn = document.getElementById('logout-btn');
+
+        const progressCircleBar = document.getElementById('progress-circle-bar');
+        const progressTextPercent = document.getElementById('progress-text-percent');
+        const progressCount = document.getElementById('progress-count');
+        const pendingBadge = document.getElementById('pending-badge');
+        const taskGrid = document.getElementById('task-grid');
+
+        const backToDashboardBtn = document.getElementById('back-to-dashboard-btn');
+        const assessmentRoleBadge = document.getElementById('assessment-role-badge');
+        const assessmentTargetName = document.getElementById('assessment-target-name');
+        const answersProgressText = document.getElementById('answers-progress-text');
+        const answersProgressBar = document.getElementById('answers-progress-bar');
+        const assessmentForm = document.getElementById('assessment-form');
+        const questionsContainer = document.getElementById('questions-container');
+        const cancelAssessmentBtn = document.getElementById('cancel-assessment-btn');
+        const successCloseBtn = document.getElementById('success-close-btn');
+
+        const GAS_URL = "https://script.google.com/macros/s/AKfycbzEQ7a_sVQUK3fj8maFRQcKDVJHcHu_bphTdXsS0XWr4juzGRMINCHor1LU0oMR3bU/exec";
+
+        // Fetch Data from Google Apps Script / Local HTTP APIs
+        function initApp() {
+            if (window.isGoogleAppsScript && namelistData && questionsData) {
+                // If running in Google Apps Script and pre-injected variables are loaded, start instantly!
+                setupEmailDropdown();
+                checkSavedSession();
+            } else {
+                // If running locally as a file, fetch directly from Google Apps Script Web App (CORS GET action)!
+                fetchLocalData();
+            }
+        }
+
+        async function fetchLocalData() {
+            try {
+                const [namelistRes, questionsRes, responsesRes] = await Promise.all([
+                    fetch(`${GAS_URL}?action=getNamelist`),
+                    fetch(`${GAS_URL}?action=getQuestions`),
+                    fetch(`${GAS_URL}?action=getResponses`)
+                ]);
+
+                namelistData = await namelistRes.json();
+                questionsData = await questionsRes.json();
+                responsesData = await responsesRes.json();
+
+                setupEmailDropdown();
+                checkSavedSession();
+            } catch (err) {
+                console.error('Failed to initialize data from Google Sheet:', err);
+                alert('เกิดข้อผิดพลาดในการโหลดข้อมูลจาก Google Sheet กรุณาตรวจสอบการเชื่อมต่ออินเทอร์เน็ต');
+            }
+        }
+
+        function showScreen(screen) {
+            document.querySelectorAll('.screen').forEach(s => {
+                s.classList.remove('active');
+            });
+            screen.classList.add('active');
+        }
+
+        function checkSavedSession() {
+            const savedEmail = localStorage.getItem('assessor_email');
+            if (savedEmail) {
+                login(savedEmail);
+            } else {
+                showScreen(loginScreen);
+            }
+        }
+
+        function setupEmailDropdown() {
+            const assessorsMap = new Map();
+            for (let i = 1; i < namelistData.rows.length; i++) {
+                const r = namelistData.rows[i];
+                if (r.F && r.E) {
+                    assessorsMap.set(r.F.toLowerCase().trim(), r.E.trim());
+                }
+            }
+
+            const uniqueAssessors = Array.from(assessorsMap.entries()).map(([email, name]) => ({ email, name }));
+
+            userEmailInput.addEventListener('focus', () => filterDropdown(uniqueAssessors));
+            userEmailInput.addEventListener('keyup', () => filterDropdown(uniqueAssessors));
+            
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.select-search-container')) {
+                    emailDropdown.classList.remove('active');
+                }
+            });
+        }
+
+        function filterDropdown(list) {
+            const val = userEmailInput.value.toLowerCase().trim();
+            const filtered = list.filter(item => 
+                item.email.includes(val) || item.name.toLowerCase().includes(val)
+            );
+
+            emailDropdown.innerHTML = '';
+            if (filtered.length > 0) {
+                filtered.forEach(item => {
+                    const div = document.createElement('div');
+                    div.className = 'dropdown-item';
+                    div.innerHTML = `<strong>${item.name}</strong><span class="dropdown-email">${item.email}</span>`;
+                    div.addEventListener('click', () => {
+                        userEmailInput.value = item.email;
+                        emailDropdown.classList.remove('active');
+                    });
+                    emailDropdown.appendChild(div);
+                });
+                emailDropdown.classList.add('active');
+            } else {
+                emailDropdown.classList.remove('active');
+            }
+        }
+
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            login(userEmailInput.value.toLowerCase().trim());
+        });
+
+        function login(email) {
+            const tasks = [];
+            let name = '';
+
+            for (let i = 1; i < namelistData.rows.length; i++) {
+                const r = namelistData.rows[i];
+                if (r.F && r.F.toLowerCase().trim() === email) {
+                    name = r.E;
+                    tasks.push({
+                        targetNo: r.A,
+                        targetName: r.B,
+                        targetEmail: r.C,
+                        role: r.D,
+                        status: checkTaskStatus(email, r.A, r.D)
+                    });
+                }
+            }
+
+            if (tasks.length === 0) {
+                alert('ไม่พบอีเมลนี้ในระบบผู้ประเมิน กรุณาตรวจสอบอีเมลอีกครั้ง');
+                localStorage.removeItem('assessor_email');
+                showScreen(loginScreen);
+                return;
+            }
+
+            currentUser = { email, name, tasks };
+            localStorage.setItem('assessor_email', email);
+
+            currentUserName.innerText = currentUser.name;
+            currentUserEmail.innerText = currentUser.email;
+
+            renderDashboard();
+            showScreen(dashboardScreen);
+        }
+
+        function checkTaskStatus(assessorEmail, targetNo, role) {
+            const found = responsesData.find(res => 
+                res.assessorEmail.toLowerCase().trim() === assessorEmail.toLowerCase().trim() && 
+                res.targetNo.toString() === targetNo.toString() &&
+                res.role === role
+            );
+            return found ? 'Completed' : 'Pending';
+        }
+
+        function renderDashboard() {
+            currentUser.tasks.forEach(t => {
+                t.status = checkTaskStatus(currentUser.email, t.targetNo, t.role);
+            });
+
+            const total = currentUser.tasks.length;
+            const completed = currentUser.tasks.filter(t => t.status === 'Completed').length;
+            const pending = total - completed;
+
+            progressCount.innerText = `${completed} / ${total}`;
+            pendingBadge.innerText = `รอดำเนินการ ${pending} งาน`;
+
+            const radius = 34;
+            const circumference = 2 * Math.PI * radius;
+            progressCircleBar.style.strokeDasharray = `${circumference} ${circumference}`;
+            const percent = total > 0 ? (completed / total) : 0;
+            progressCircleBar.style.strokeDashoffset = circumference - (percent * circumference);
+            progressTextPercent.innerText = `${Math.round(percent * 100)}%`;
+
+            taskGrid.innerHTML = '';
+            currentUser.tasks.forEach(task => {
+                const card = document.createElement('div');
+                const isCompleted = task.status === 'Completed';
+                const roleClass = task.role.toLowerCase().startsWith('self') ? 'self' : 'peer';
+                card.className = 'task-card';
+                card.innerHTML = `
+                    <div class="task-card-header">
+                        <span class="task-badge-role ${roleClass}">${task.role}</span>
+                        <span class="task-badge-status ${isCompleted ? 'status-completed' : 'status-pending'}">
+                            ${isCompleted ? '✓ เสร็จสิ้น' : '● รอดำเนินการ'}
+                        </span>
+                    </div>
+                    <div class="task-card-body">
+                        <h4>${task.targetName}</h4>
+                        <span class="sub-text">${task.targetEmail}</span>
+                    </div>
+                    <div class="task-card-footer">
+                        <button class="btn btn-sm ${isCompleted ? 'btn-outline' : 'btn-primary'}">
+                            ${isCompleted ? 'แก้ไขผลประเมิน' : 'เริ่มทำแบบประเมิน'}
+                        </button>
+                    </div>
+                `;
+                card.querySelector('button').addEventListener('click', () => startAssessment(task));
+                taskGrid.appendChild(card);
+            });
+        }
+
+        logoutBtn.addEventListener('click', () => {
+            localStorage.removeItem('assessor_email');
+            currentUser = null;
+            currentTask = null;
+            userEmailInput.value = '';
+            showScreen(loginScreen);
+        });
+
+        function startAssessment(task) {
+            currentTask = task;
+            assessmentRoleBadge.innerText = task.role;
+            assessmentRoleBadge.className = 'badge ' + (task.role.toLowerCase().startsWith('self') ? 'badge-success' : 'badge-info');
+            assessmentTargetName.innerText = task.targetName;
+
+            const existing = responsesData.find(res => 
+                res.assessorEmail.toLowerCase().trim() === currentUser.email.toLowerCase().trim() && 
+                res.targetNo.toString() === task.targetNo.toString() &&
+                res.role === task.role
+            );
+            const savedAnswers = existing ? existing.answers : {};
+
+            const categoriesMap = new Map();
+            for (let i = 2; i < questionsData.rows.length; i++) {
+                const q = questionsData.rows[i];
+                if (!q.B) continue;
+                if (!categoriesMap.has(q.B)) categoriesMap.set(q.B, []);
+                categoriesMap.get(q.B).push({ id: q.A, text: q.C });
+            }
+
+            questionsContainer.innerHTML = '';
+            categoriesMap.forEach((questions, categoryName) => {
+                const catBlock = document.createElement('div');
+                catBlock.className = 'category-block';
+                catBlock.innerHTML = `<h3 class="category-title">📁 ${categoryName}</h3>`;
+
+                questions.forEach(q => {
+                    const qItem = document.createElement('div');
+                    qItem.className = 'question-item';
+                    const selectedVal = savedAnswers[q.id] || '';
+
+                    qItem.innerHTML = `
+                        <div class="question-text">
+                            <span class="question-number">${q.id}.</span>
+                            <span>${q.text}</span>
+                        </div>
+                        <div class="rating-options">
+                            ${[5, 4, 3, 2, 1, 'N/A'].map(val => {
+                                const isChecked = selectedVal.toString() === val.toString() ? 'checked' : '';
+                                const chipClass = val === 'N/A' ? 'cna' : `c${val}`;
+                                const labelText = val === 'N/A' ? 'ระบุไม่ได้' : val;
+                                const scoreDesc = val === 5 ? 'ประจำ' : val === 1 ? 'ไม่เคยเลย' : '';
+                                return `
+                                    <label class="rating-label">
+                                        <input type="radio" name="q_${q.id}" value="${val}" ${isChecked} required>
+                                        <span class="rating-chip ${chipClass}">${val}</span>
+                                        <span class="rating-text">${scoreDesc || labelText}</span>
+                                    </label>
+                                `;
+                            }).join('')}
+                        </div>
+                    `;
+                    catBlock.appendChild(qItem);
+                });
+                questionsContainer.appendChild(catBlock);
+            });
+
+            setupProgressTracking();
+            showScreen(assessmentScreen);
+        }
+
+        function setupProgressTracking() {
+            const totalQuestions = 19;
+            function updateProgress() {
+                const checkedCount = questionsContainer.querySelectorAll('input[type="radio"]:checked').length;
+                answersProgressText.innerText = `ตอบแล้ว ${checkedCount} / ${totalQuestions} ข้อ`;
+                answersProgressBar.style.width = `${(checkedCount / totalQuestions) * 100}%`;
+            }
+            questionsContainer.querySelectorAll('input[type="radio"]').forEach(radio => {
+                radio.addEventListener('change', updateProgress);
+            });
+            updateProgress();
+        }
+
+        assessmentForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const answers = {};
+            let allAnswered = true;
+
+            for (let q = 1; q <= 19; q++) {
+                const checkedRadio = questionsContainer.querySelector(`input[name="q_${q}"]:checked`);
+                if (checkedRadio) {
+                    answers[q.toString()] = checkedRadio.value;
+                } else {
+                    allAnswered = false;
+                    break;
+                }
+            }
+
+            if (!allAnswered) {
+                alert('กรุณาตอบคำถามให้ครบถ้วนทั้ง 19 ข้อก่อนส่งผลประเมิน');
+                return;
+            }
+
+            const payload = {
+                assessorEmail: currentUser.email,
+                targetNo: currentTask.targetNo,
+                role: currentTask.role,
+                answers: answers
+            };
+
+            loaderScreen.classList.add('active');
+
+            if (window.isGoogleAppsScript) {
+                // Google Apps Script mode (Direct write with instant callback)
+                google.script.run
+                    .withSuccessHandler(function(newResponses) {
+                        responsesData = newResponses;
+                        loaderScreen.classList.remove('active');
+                        successOverlay.classList.add('active');
+                    })
+                    .withFailureHandler(function(err) {
+                        loaderScreen.classList.remove('active');
+                        alert('เกิดข้อผิดพลาดในการบันทึกข้อมูล: ' + err.message);
+                    })
+                    .submitAssessment(payload);
+            } else {
+                // Local/Offline file mode: Send directly to the live GAS URL using GET (CORS friendly)
+                try {
+                    const url = `${GAS_URL}?action=submit&payload=${encodeURIComponent(JSON.stringify(payload))}`;
+                    const res = await fetch(url);
+                    if (res.ok) {
+                        responsesData = await res.json();
+                        loaderScreen.classList.remove('active');
+                        successOverlay.classList.add('active');
+                    } else {
+                        loaderScreen.classList.remove('active');
+                        alert('ไม่สามารถส่งข้อมูลได้ กรุณาลองอีกครั้งในภายหลัง');
+                    }
+                } catch (err) {
+                    loaderScreen.classList.remove('active');
+                    console.error('Error submitting assessment:', err);
+                    alert('เกิดข้อผิดพลาดในการเชื่อมต่อเพื่อส่งผลประเมิน');
+                }
+            }
+        });
+
+        successCloseBtn.addEventListener('click', () => {
+            successOverlay.classList.remove('active');
+            renderDashboard();
+            showScreen(dashboardScreen);
+        });
+
+        cancelAssessmentBtn.addEventListener('click', () => {
+            if (confirm('คุณต้องการยกเลิกการทำแบบประเมินนี้ใช่หรือไม่? ข้อมูลที่ตอบไปยังไม่ได้บันทึก')) {
+                showScreen(dashboardScreen);
+            }
+        });
+
+        backToDashboardBtn.addEventListener('click', () => {
+            showScreen(dashboardScreen);
+        });
+
+        // Initialize on page load
+        window.addEventListener('DOMContentLoaded', initApp);
+    </script>
+</body>
+</html>
