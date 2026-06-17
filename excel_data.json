@@ -1,0 +1,622 @@
+﻿[
+    {
+        "value":  [
+                      "",
+                      "ตนเอง (Self)",
+                      "",
+                      "หัวหน้า (Direct Boss)",
+                      "",
+                      "Peer1",
+                      "",
+                      "Peer2",
+                      "",
+                      "Peer3",
+                      "",
+                      "",
+                      "",
+                      "",
+                      ""
+                  ],
+        "Count":  15
+    },
+    {
+        "value":  [
+                      "ลำดับ",
+                      "ชื่อ สกุล",
+                      "Email ",
+                      "ชื่อ-สกุล",
+                      "Email ",
+                      "ชื่อ-สกุล",
+                      "Email ",
+                      "ชื่อ-สกุล",
+                      "Email ",
+                      "ชื่อ-สกุล",
+                      "Email ",
+                      "",
+                      "",
+                      "",
+                      ""
+                  ],
+        "Count":  15
+    },
+    {
+        "value":  [
+                      "1",
+                      "Anuchit  Sangnoual",
+                      "anuchit@bafs.co.th",
+                      "Nuttapong Kijthavornwatana",
+                      "nuttapong@bafs.co.th",
+                      "Nuttawan  Nilapong",
+                      "nuttawan@bafs.co.th",
+                      "Thanapol Chalermchawalit",
+                      "thanapol@bafs.co.th",
+                      "Marisa Doemthamram",
+                      "marisa.d@bafs.co.th",
+                      "",
+                      "",
+                      "",
+                      ""
+                  ],
+        "Count":  15
+    },
+    {
+        "value":  [
+                      "2",
+                      "Anusak  Sukkree",
+                      "anusak@bafs.co.th",
+                      "Pakasit Promnim",
+                      "pakasit@bafs.co.th",
+                      "Chitakon Prasomsi",
+                      "chitakon@bafs.co.th",
+                      "Sitthipol Mougbun ",
+                      "sitthipol.m@bafs.co.th",
+                      "Somjai Vanitsunthorn",
+                      "somjai@bafs.co.th",
+                      "",
+                      "",
+                      "",
+                      ""
+                  ],
+        "Count":  15
+    },
+    {
+        "value":  [
+                      "3",
+                      "Apisak  Kweinthong",
+                      "apisak@bafs.co.th",
+                      "Noppadon Musigavatee",
+                      "noppadon@bafs.co.th",
+                      "Somkiat Punduang",
+                      "somkiat@bafs.co.th",
+                      "Chaiwut  Jaisung",
+                      "chaiwut@bafs.co.th",
+                      "Krittimook Karoon",
+                      "krittimook.k@bafs.co.th",
+                      "",
+                      "",
+                      "",
+                      ""
+                  ],
+        "Count":  15
+    },
+    {
+        "value":  [
+                      "4",
+                      "Chaiwut  Jaisung",
+                      "chaiwut@bafs.co.th",
+                      "Noppadon Musigavatee",
+                      "noppadon@bafs.co.th",
+                      "Kanyawee  Boonprakone",
+                      "kanyawee.b@bafs.co.th",
+                      "Game  Wongwekhin",
+                      "game@bafs.co.th",
+                      "Apisak  Kweinthong",
+                      "apisak@bafs.co.th",
+                      "",
+                      "",
+                      "",
+                      ""
+                  ],
+        "Count":  15
+    },
+    {
+        "value":  [
+                      "5",
+                      "Chayanit  Sookavari",
+                      "chayanit@bafs.co.th",
+                      "On-anong Kusolpitukcheep",
+                      "onanong@bafs.co.th",
+                      "Songrath Ontieng",
+                      "songrath@bafs.co.th",
+                      "Thanakorn Sirithaporn",
+                      "thanakorn@bafs-intech.co.th",
+                      "Piyaporn Numee",
+                      "piyaporn@bafs.co.th ",
+                      "",
+                      "",
+                      "",
+                      ""
+                  ],
+        "Count":  15
+    },
+    {
+        "value":  [
+                      "6",
+                      "Chitakon  Prasomsi",
+                      "Chitakon@bafs.co.th",
+                      "Jirath Jitsoontorn",
+                      "jirath@bafs.co.th",
+                      "Pakasit Promnim",
+                      "pakasit@bafs.co.th",
+                      "Witsanu Sakaew",
+                      "witsanu@bafs.co.th",
+                      "Nuttapong Kijthavornwatana",
+                      "nuttapong@bafs.co.th",
+                      "",
+                      "",
+                      "",
+                      ""
+                  ],
+        "Count":  15
+    },
+    {
+        "value":  [
+                      "7",
+                      "Game  Wongwekhin",
+                      "game@bafs.co.th",
+                      "Avinan Sa-ard-dee",
+                      "avinan.s@bafs.co.th",
+                      "Sasiyaporn  Riangsanthia",
+                      "sasiyaporn.r@bafs.co.th",
+                      "Supatsara Orapakdee",
+                      "supatsara@bafs.co.th",
+                      "Thaninrada  Munkongtanatip",
+                      "thaninrada@bafs.co.th",
+                      "",
+                      "",
+                      "",
+                      ""
+                  ],
+        "Count":  15
+    },
+    {
+        "value":  [
+                      "8",
+                      "Jaruwan  Panyarakkit",
+                      "jaruwan@bafs.co.th",
+                      "Rachanok Sa-nguansub",
+                      "rachanok@bafs.co.th",
+                      "Sangduan Tipworapong",
+                      "sangduan@bafs.co.th ",
+                      "Manapaporn Pathumanont",
+                      "manapaporn@bafs.co.th",
+                      "Pimarn Narksusook",
+                      "pimarn@bafs.co.th",
+                      "",
+                      "",
+                      "",
+                      ""
+                  ],
+        "Count":  15
+    },
+    {
+        "value":  [
+                      "9",
+                      "Kanoknok  Ayuvatthana",
+                      "kanoknok@bafscleanenergy.com",
+                      "Guntapon Mahanonda",
+                      "guntapon.m@bafscleanenergy.com",
+                      "Sitthipat Preedawan",
+                      "sitthipat.p@bafs.co.th",
+                      "Kosum Ritdee",
+                      "kosum@bafscleanenergy.com",
+                      "Phatramon Praphaweekorn",
+                      "phatramon.p@bpt.co.th",
+                      "",
+                      "",
+                      "",
+                      ""
+                  ],
+        "Count":  15
+    },
+    {
+        "value":  [
+                      "10",
+                      "Kanyawee  Boonprakone",
+                      "kanyawee.b@bafs.co.th",
+                      "Prawmai Burarak",
+                      "prawmai_b@bafs.co.th",
+                      "Natnaree  Tangeiam",
+                      "natnaree@bafs.co.th",
+                      "Anchisa Tae",
+                      "anchisa@bafs.co.th",
+                      "Nut  Sangsawang",
+                      "nut.s@bpt.co.th",
+                      "",
+                      "",
+                      "",
+                      ""
+                  ],
+        "Count":  15
+    },
+    {
+        "value":  [
+                      "11",
+                      "Montree  Ladlongmuang",
+                      "montree_l@bafs.co.th",
+                      "Songrath Ontieng",
+                      "songrath@bafs.co.th",
+                      "Chuchart Tonputza",
+                      "chuchart@bafs.co.th",
+                      "Nithikon Khemasitthichok",
+                      "nithikon@bafs.co.th",
+                      "Bundit Sangthong",
+                      "bundit@bafs.co.th",
+                      "",
+                      "",
+                      "",
+                      ""
+                  ],
+        "Count":  15
+    },
+    {
+        "value":  [
+                      "12",
+                      "Narawut  Petchanuan",
+                      "narawut@bafs.co.th",
+                      "Nuttapong Kijthavornwatana",
+                      "nuttapong@bafs.co.th",
+                      "Thull Prapasanobol",
+                      "thull@bafs.co.th",
+                      "Suchart Ruksawong",
+                      "suchart@bafs.co.th",
+                      "Ritthiphon  Wenanont",
+                      "ritthiphon@bafs.co.th",
+                      "",
+                      "",
+                      "",
+                      ""
+                  ],
+        "Count":  15
+    },
+    {
+        "value":  [
+                      "13",
+                      "Natnaree  Tangeiam",
+                      "natnaree@bafs.co.th",
+                      "Prawmai Burarak",
+                      "prawmai_b@bafs.co.th",
+                      "Anchisa Tae",
+                      "anchisa@bafs.co.th",
+                      "Sasiyaporn  Riangsanthia",
+                      "sasiyaporn.r@bafs.co.th",
+                      "Kanyawee  Boonprakone",
+                      "kanyawee.b@bafs.co.th",
+                      "",
+                      "",
+                      "",
+                      ""
+                  ],
+        "Count":  15
+    },
+    {
+        "value":  [
+                      "14",
+                      "Nut  Sangsawang",
+                      "nut.s@bpt.co.th",
+                      "Tanach Shingrissiri",
+                      "tanach.s@bpt.co.th",
+                      "Thanit Srikul",
+                      "thanit.s@bpt.co.th",
+                      "Ekkarat Roopsomdee",
+                      "ekkarat.r@bpt.co.th",
+                      "Pornnimit Saipan",
+                      "pornnimit.s@bpt.co.th",
+                      "",
+                      "",
+                      "",
+                      ""
+                  ],
+        "Count":  15
+    },
+    {
+        "value":  [
+                      "15",
+                      "Nuthawat  Karnchanapa",
+                      "nuthawat.k@bpt.co.th",
+                      "Phat Jirakansopasakun",
+                      "phat.j@bpt.co.th",
+                      "Jirayu Janjumsri",
+                      "jirayu.j@bpt.co.th",
+                      "Chaiyan Wansa",
+                      "chaiyan.w@bpt.co.th",
+                      "Siraprapa  Kanavapee",
+                      "siraprapa.k@bpt.co.th",
+                      "",
+                      "",
+                      "",
+                      ""
+                  ],
+        "Count":  15
+    },
+    {
+        "value":  [
+                      "16",
+                      "Nuttawan  Nilapong",
+                      "nuttawan@bafs.co.th",
+                      "Katecharin Khangrit",
+                      "katecharin@bafs.co.th",
+                      "Ruengwith Artvichai",
+                      "ruengwith_a@bafs.co.th",
+                      "Warinthon Ratchapaisan",
+                      "warinthon@bafs.co.th",
+                      "Nutcha Riengrach",
+                      "nutcha@bafs.co.th",
+                      "",
+                      "",
+                      "",
+                      ""
+                  ],
+        "Count":  15
+    },
+    {
+        "value":  [
+                      "17",
+                      "On-anong  Kusolpitukcheep",
+                      "onanong@bafs.co.th",
+                      "Prakasit Somyanontanak",
+                      "prakasit@bafs.co.th",
+                      "Thananchai Buaphuean",
+                      "thananchai_b@bafs.co.th",
+                      "Pakasit Promnim ",
+                      "pakasit@bafs.co.th",
+                      "Anuchit Sangnoual",
+                      "anuchit@bafs.co.th",
+                      "",
+                      "",
+                      "",
+                      ""
+                  ],
+        "Count":  15
+    },
+    {
+        "value":  [
+                      "18",
+                      "Phatramon  Praphaweekorn",
+                      "phatramon.p@bpt.co.th",
+                      "Jade Tupiya",
+                      "jade.t@bpt.co.th",
+                      "Araya Ninngam",
+                      "Araya.n@bpt.co.th",
+                      "Chamchan Sirithawat",
+                      "Chamchan.s@bpt.co.th",
+                      "Sitthipol Moungbun",
+                      "sathaporn_m@bafs.co.th",
+                      "",
+                      "",
+                      "",
+                      ""
+                  ],
+        "Count":  15
+    },
+    {
+        "value":  [
+                      "19",
+                      "Premjit  Kootchuchuen",
+                      "premjit@bafs.co.th",
+                      "Palit Pahuvanich",
+                      "palit_p@bafs.co.th",
+                      "Nutcha Riengrach",
+                      "nutcha@bafs.co.th",
+                      "Thanawan Sanansongkram",
+                      "thanawan@bafs.co.th",
+                      "Pimmada Sawanjinda",
+                      "pimmada.s@bafs.co.th",
+                      "",
+                      "",
+                      "",
+                      ""
+                  ],
+        "Count":  15
+    },
+    {
+        "value":  [
+                      "20",
+                      "Ritthiphon  Wenanont",
+                      "ritthiphon@bafs.co.th",
+                      "Suchart Ruksawong",
+                      "suchart@bafs.co.th",
+                      "Narawut  Petchanuan",
+                      "narawut@bafs.co.th",
+                      "Thull Prapasanobol",
+                      "thull@bafs.co.th",
+                      "Boripatnsak Hompaka",
+                      "boripatnsak@bafs.co.th",
+                      "",
+                      "",
+                      "",
+                      ""
+                  ],
+        "Count":  15
+    },
+    {
+        "value":  [
+                      "21",
+                      "Ruengwith  Artvichai",
+                      "Ruengwith_a@bafs.co.th",
+                      "Katecharin Khangrit",
+                      "katecharin@bafs.co.th",
+                      "Nuttawan  Nilapong",
+                      "nuttawan@bafs.co.th",
+                      "Chaiwut  Jaisung",
+                      "chaiwut@bafs.co.th",
+                      "On-anong  Kusolpitukcheep",
+                      "onanong@bafs.co.th",
+                      "",
+                      "",
+                      "",
+                      ""
+                  ],
+        "Count":  15
+    },
+    {
+        "value":  [
+                      "22",
+                      "Sasiyaporn  Riangsanthia",
+                      "sasiyaporn.r@bafs.co.th",
+                      "Avinan Sa-ard-dee",
+                      "avinan.s@bafs.co.th",
+                      "Natnaree  Tangeiam",
+                      "natnaree@bafs.co.th",
+                      "Premjit  Kootchuchuen",
+                      "premjit@bafs.co.th",
+                      "Game  Wongwekhin",
+                      "game@bafs.co.th",
+                      "",
+                      "",
+                      "",
+                      ""
+                  ],
+        "Count":  15
+    },
+    {
+        "value":  [
+                      "23",
+                      "Sitthipol Moungbun",
+                      "sitthipol.m@bafs.co.th",
+                      "Pakasit Promnim",
+                      "pakasit@bafs.co.th",
+                      "Montree  Ladlongmuang",
+                      "montree_l@bafs.co.th",
+                      "Anusak  Sukkree",
+                      "anusak@bafs.co.th",
+                      "Somjai  Vanitsunthorn",
+                      "somjai@bafs.co.th",
+                      "",
+                      "",
+                      "",
+                      ""
+                  ],
+        "Count":  15
+    },
+    {
+        "value":  [
+                      "24",
+                      "Siraprapa  Kanavapee",
+                      "siraprapa.k@bpt.co.th",
+                      "Sutaphat Madisara",
+                      "sutaphat.m@bafs.co.th",
+                      "Tanin  Noyjoy",
+                      "tanin@tarco.co.th",
+                      "Radanut Nanthiwatthana",
+                      "Radanut@tarco.co.th",
+                      "Pattarapol Piruksa",
+                      "pattarapol@tarco.co.th",
+                      "",
+                      "",
+                      "",
+                      ""
+                  ],
+        "Count":  15
+    },
+    {
+        "value":  [
+                      "25",
+                      "Sitthipat  Preedawan",
+                      "sitthipat.p@bafs.co.th",
+                      "Wirun Suwanno",
+                      "wirun@bafs.co.th",
+                      "Saengduan Laophadungveth",
+                      "saengduan@bafs.co.th",
+                      "Surawit Yuangmanee",
+                      "surawit.y@bpt.co.th",
+                      "Sophaphan Ruatreo",
+                      "sophaphan@bafs.co.th",
+                      "",
+                      "",
+                      "",
+                      ""
+                  ],
+        "Count":  15
+    },
+    {
+        "value":  [
+                      "26",
+                      "Somjai  Vanitsunthorn",
+                      "somjai@bafs.co.th",
+                      "Pakasit Promnim",
+                      "pakasit@bafs.co.th",
+                      "Chitakon  Prasomsi",
+                      "Chitakon@bafs.co.th",
+                      "Sitthipol Moungbun",
+                      "sitthipol.m@bafs.co.th",
+                      "Tanin  Noyjoy",
+                      "tanin@tarco.co.th",
+                      "",
+                      "",
+                      "",
+                      ""
+                  ],
+        "Count":  15
+    },
+    {
+        "value":  [
+                      "27",
+                      "Tanin  Noyjoy",
+                      "tanin@tarco.co.th",
+                      "Sutaphat Madisara",
+                      "sutaphat.m@bafs.co.th",
+                      "Prayoon Somchue",
+                      "prayoon@tarco.co.th",
+                      "Weranun Muangpathom",
+                      "weranun@tarco.co.th",
+                      "Attapol Wongsuwattana",
+                      "attapol@tarco.co.th",
+                      "",
+                      "",
+                      "",
+                      ""
+                  ],
+        "Count":  15
+    },
+    {
+        "value":  [
+                      "28",
+                      "Teerakan  Hnurit",
+                      "teerakan.h@bafsservices.co.th",
+                      "Yuphadee Tongaroonsri",
+                      "yuphadee@bafs.co.th",
+                      "Sangduan Tipworapong",
+                      "sangduan@bafs.co.th",
+                      "Pimarn Narksusook",
+                      "pimarn@bafs.co.th",
+                      "Rachod Piyapatthamin",
+                      "rachod.p@bafs.co.th",
+                      "",
+                      "",
+                      "",
+                      ""
+                  ],
+        "Count":  15
+    },
+    {
+        "value":  [
+                      "29",
+                      "Thaninrada  Munkongtanatip",
+                      "thaninrada@bafs.co.th",
+                      "Yuphadee Tongaroonsri",
+                      "yuphadee@bafs.co.th",
+                      "Sangduan Tipworapong",
+                      "sangduan@bafs.co.th",
+                      "Vareerut Vangthaphan",
+                      "vareerut@bafs.co.th",
+                      "Piranathsak Duangdangchot",
+                      "piranathsak@bafs.co.th",
+                      "",
+                      "",
+                      "",
+                      ""
+                  ],
+        "Count":  15
+    }
+]
