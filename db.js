@@ -1,5 +1,5 @@
 const DB = {
-    "version": "1.13.0",
+    "version": "1.14.0",
     "questions": [
         {
             "id": 1,
@@ -49,7 +49,7 @@ const DB = {
         {
             "id": 10,
             "category": "ทักษะการให้ Feedback",
-            "text": "ให้ Feedback ที่ให้ไป มีประโยชน์ต่อการทำงาน"
+            "text": "Feedback ที่ให้ไป มีประโยชน์ต่อการทำงาน"
         },
         {
             "id": 11,
@@ -59,7 +59,7 @@ const DB = {
         {
             "id": 12,
             "category": "ทักษะการมอบหมายงานและการมอบอำนาจ",
-            "text": "มอบหมายงานได้เหมาะสมกับบุคลนั้น"
+            "text": "มอบหมายงานได้เหมาะสมกับบุคคลนั้น"
         },
         {
             "id": 13,
@@ -504,7 +504,7 @@ const DB = {
                 },
                 {
                     "name": "Sitthipol Moungbun",
-                    "email": "sathaporn_m@bafs.co.th"
+                    "email": "sitthipol.m@bafs.co.th"
                 }
             ],
             "manager": {
