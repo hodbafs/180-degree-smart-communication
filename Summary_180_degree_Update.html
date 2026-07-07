@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>สรุปการปรับปรุงระบบประเมิน 180 องศา</title>
+    <style>
+        body { font-family: 'Sarabun', sans-serif; padding: 40px; line-height: 1.6; color: #333; }
+        h1 { color: #0082c8; border-bottom: 2px solid #00c5c8; padding-bottom: 10px; }
+        h2 { color: #444; margin-top: 30px; }
+        .section { margin-bottom: 20px; background: #f9f9f9; padding: 15px; border-radius: 8px; }
+        .highlight { font-weight: bold; color: #d97706; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 8px; }
+        .footer { margin-top: 50px; font-size: 0.9em; color: #666; text-align: center; }
+    </style>
+</head>
+<body>
+    <h1>สรุปการปรับปรุงระบบประเมิน 180 องศา</h1>
+    <p><strong>วันที่:</strong> 17 มิถุนายน 2569</p>
+
+    <div class="section">
+        <h2>1. การปรับปรุงหน้า Login</h2>
+        <ul>
+            <li>เพิ่มข้อความ <strong>"หมายเหตุ: การประเมินพฤติกรรมแบบ 180 องศาในครั้งนี้ จะอ้างอิงข้อมูลพฤติกรรมที่สังเกตได้จริง ในช่วงตั้งแต่วันที่ 1 มกราคม – 30 พฤษภาคม 2569"</strong></li>
+            <li>จัดรูปแบบเป็นกล่องแจ้งเตือน (Notice Box) สีเหลืองเห็นได้ชัดเจนที่หน้าแรก</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>2. การปรับปรุงรายงานสรุปผล (Report PDF)</h2>
+        <ul>
+            <li><strong>เพิ่มหัวข้อย่อย:</strong> ดึงรายการข้อคำถามย่อย (1-19 ข้อ) มาแสดงภายใต้หมวดหมู่หลักทั้ง 6 ด้าน เพื่อให้เห็นภาพรวมของสิ่งที่ถูกประเมิน</li>
+            <li><strong>ลบข้อความส่วนเกิน:</strong> นำบรรทัด <em>"ลักษณะรายงาน: Dashboard สรุปผล 1 หน้ากระดาษ"</em> ออกจากส่วนหัวของรายงาน</li>
+            <li><strong>ปรับปรุง Layout:</strong> ปรับขนาดตัวอักษรและระยะห่างเพื่อให้เนื้อหาที่เพิ่มขึ้นยังคงอยู่ในหน้ากระดาษที่สวยงาม</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>3. การแก้ไขฐานข้อมูลและตัวสะกด (db.js)</h2>
+        <ul>
+            <li><strong>แก้ไขคำผิด:</strong>
+                <ul>
+                    <li>ข้อ 12: แก้จาก "บุคล" เป็น <span class="highlight">"บุคคล"</span></li>
+                    <li>ข้อ 13: แก้จาก "สนับสุน" เป็น <span class="highlight">"สนับสนุน"</span></li>
+                </ul>
+            </li>
+            <li><strong>ปรับปรุงข้อความ:</strong>
+                <ul>
+                    <li>ข้อ 10: ตัดคำว่า "ให้ " ออก เป็น <span class="highlight">"Feedback ที่ให้ไป มีประโยชน์ต่อการทำงาน"</span></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>4. การอัปเดตข้อมูลพนักงาน (Email Update)</h2>
+        <ul>
+            <li>เปลี่ยนอีเมลของ <strong>คุณ Sitthipol Moungbun</strong> จากเดิม <code>sathaporn_m@bafs.co.th</code> เป็น <span class="highlight"><code>sitthipol.m@bafs.co.th</code></span> ทั่วทั้งระบบ</li>
+            <li>อัปเดตสิทธิ์การประเมินให้คุณ Sitthipol สามารถมองเห็นงานประเมินของคุณ <strong>Phatramon Praphaweekorn</strong></li>
+            <li><strong>อัปเดตเวอร์ชันฐานข้อมูล:</strong> ปรับเป็น <span class="highlight">Version 1.14.0</span> เพื่อบังคับให้ Browser ทุกเครื่องโหลดข้อมูลใหม่ล่าสุด (แก้ปัญหามองไม่เห็นรายชื่อ)</li>
+        </ul>
+    </div>
+
+    <div class="section" style="border: 2px dashed #0082c8;">
+        <h2>⚠️ ขั้นตอนที่ต้องดำเนินการต่อ</h2>
+        <p>เพื่อให้การแก้ไขทั้งหมดมีผลบนเว็บไซต์ที่ใช้งานจริง:</p>
+        <ol>
+            <li><strong>ใน Google Sheet:</strong> ตรวจสอบและเปลี่ยนอีเมลของ Sitthipol เป็น <code>sitthipol.m@bafs.co.th</code></li>
+            <li><strong>ใน GitHub:</strong> ทำการ Push ไฟล์ <code>db.js</code>, <code>app.js</code> และ <code>index.html</code> ขึ้นไปยัง Repository</li>
+        </ol>
+    </div>
+
+    <div class="footer">
+        <p>ดำเนินการโดย Gemini CLI</p>
+    </div>
+</body>
+</html>
